@@ -66,7 +66,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
        	String batteryStatus = "";
        	IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
        	
-        Intent batteryStatusIntent = context.registerReceiver(null, ifilter);
+        Intent batteryStatusIntent = context.getApplicationContext().registerReceiver(null, ifilter);
         
         int status = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
         boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL;
@@ -124,9 +124,6 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         }
         if(isFull){
         	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.",true);
-        }
-        Toast toast111= Toast.makeText(context, String.valueOf(isFull), Toast.LENGTH_SHORT);
-            toast111.show();
         }
         catch(Exception e){
             Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT);
