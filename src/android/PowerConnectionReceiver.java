@@ -125,6 +125,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         if(isFull){
         	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.",true);
         }
+        }
         catch(Exception e){
             Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT);
             toast.show();
