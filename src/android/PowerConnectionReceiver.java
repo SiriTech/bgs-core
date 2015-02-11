@@ -26,7 +26,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     	//myAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
     	//myAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
     	//myAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-    	Uri soundUri;
+    	Uri soundUri=null;
     	if(isSound){
     		soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
     	}
