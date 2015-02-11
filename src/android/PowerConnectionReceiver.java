@@ -26,15 +26,18 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     	//myAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
     	//myAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
     	//myAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+    	Uri soundUri;
     	if(isSound){
-    	Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+    		soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
     	}
     	final NotificationManager mgr=
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             Notification note=new Notification(context.getApplicationInfo().icon,
                                                             title,
                                                             System.currentTimeMillis());
-             note.sound=soundUri;
+             if(isSound){
+             	note.sound=soundUri;
+             }
 		Intent contentIntent = new Intent();
              PendingIntent appIntent = PendingIntent.getActivity(context, 0, contentIntent, 0);
 	        note.setLatestEventInfo(context, title, description, appIntent);
