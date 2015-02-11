@@ -20,13 +20,15 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
     int notifyID = 11;
     boolean isServiceStarted=true;
     private AudioManager myAudioManager;
-    public void showNotification(Context context, String title, String description){
+    public void showNotification(Context context, String title, String description,boolean isSound){
     	try{
     	myAudioManager = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
     	//myAudioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
     	//myAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
     	//myAudioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+    	if(isSound){
     	Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+    	}
     	final NotificationManager mgr=
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             Notification note=new Notification(context.getApplicationInfo().icon,
@@ -83,7 +85,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         	batteryStatus = "AC Power";
         }
         if(isCharging){
-        	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%");
+        	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%",false);
         	if(isServiceStarted){
         		// Get all the registered and loop through and start them
 			String[] serviceList = PropertyHelper.getBootServices(context);
@@ -118,14 +120,12 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         	}
         }
         if(isFull){
-        	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.");
+        	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.",true);
         }
         }
         catch(Exception e){
             Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT);
             toast.show();
-            Toast toast1 = Toast.makeText(context, "on receive exception", Toast.LENGTH_SHORT);
-            toast1.show();
         }
     }
 }
