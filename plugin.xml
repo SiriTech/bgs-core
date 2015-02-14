@@ -30,6 +30,7 @@
 
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+            <uses-sdk android:minSdkVersion="1" android:targetSdkVersion="21" />
         </config-file>
         
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
