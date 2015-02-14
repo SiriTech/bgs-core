@@ -87,7 +87,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         {
         	batteryStatus = "AC Power";
         }
-        if(isCharging && percentage != "100"){
+        if(isCharging){
         	showNotification(context,"Safe Battery Enabled", "Charging "+percentage+"%",false);
         	if(isServiceStarted){
         		// Get all the registered and loop through and start them
@@ -122,8 +122,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 		
         	}
         }
-        if(percentage == "100"){
-        	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.",true);
+        if(isFull){
+        	showNotification(context,"Safe Battery Enabled", "Battery fully charged. Unplug Charger.",true);
         }
         }
         catch(Exception e){
