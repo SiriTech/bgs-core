@@ -76,9 +76,9 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
         int level = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
 	int scale = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-	String percentage = String.valueOf((int)Math.round(batteryPct * 100));
-	float batteryPct = level / (float)scale;
 	
+	float batteryPct = level / (float)scale;
+	String percentage = String.valueOf((int)Math.round(batteryPct * 100));
         if(usbCharge)
         {
         	batteryStatus = "USB";
