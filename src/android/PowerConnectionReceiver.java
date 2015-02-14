@@ -76,7 +76,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         boolean acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC;
         int level = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
 	int scale = batteryStatusIntent.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-
+	String percentage = String.valueOf((int)Math.round(batteryPct * 100));
 	float batteryPct = level / (float)scale;
 	
         if(usbCharge)
@@ -87,8 +87,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         {
         	batteryStatus = "AC Power";
         }
-        if(isCharging){
-        	showNotification(context,"Safe Battery Enabled", "Charging "+Float.toString(batteryPct * 100)+"%",false);
+        if(isCharging && percentage != "100"){
+        	showNotification(context,"Safe Battery Enabled", "Charging "+percentage+"%",false);
         	if(isServiceStarted){
         		// Get all the registered and loop through and start them
 			String[] serviceList = PropertyHelper.getBootServices(context);
@@ -122,7 +122,7 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
 		
         	}
         }
-        if(isFull){
+        if(percentage == "100"){
         	showNotification(context,"Safe Battery Enabled", "100% charged. Unplug Charger.",true);
         }
         }
