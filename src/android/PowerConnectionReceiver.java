@@ -87,14 +87,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         {
         	batteryStatus = "AC Power";
         }
-        Toast toast113 = Toast.makeText(context, String.valueOf(status), Toast.LENGTH_SHORT);
-        toast113.show();
-        Toast toast11 = Toast.makeText(context, String.valueOf(BatteryManager.BATTERY_STATUS_FULL), Toast.LENGTH_SHORT);
-        toast11.show();
-        Toast toast112 = Toast.makeText(context, String.valueOf(isFull), Toast.LENGTH_SHORT);
-        toast112.show();
         if(isCharging){
-        	showNotification(context,"Safe Battery Enabled", "Charging "+percentage+"%",false);
+        	//showNotification(context,"Safe Battery Enabled", "Charging "+percentage+"%",false);
         	if(isServiceStarted){
         		// Get all the registered and loop through and start them
 			String[] serviceList = PropertyHelper.getBootServices(context);
@@ -130,6 +124,8 @@ public class PowerConnectionReceiver extends BroadcastReceiver {
         }
         if(isFull){
         	showNotification(context,"Safe Battery Enabled", "Battery fully charged. Unplug Charger.",true);
+        	//Toast toast = Toast.makeText(context, "Battery fully charged. Unplug Charger.", Toast.LENGTH_SHORT);
+            	//toast.show();
         }
         }
         catch(Exception e){
